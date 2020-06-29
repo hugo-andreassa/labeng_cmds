@@ -1,28 +1,28 @@
-package entities;
+package model.entities;
 
 import java.io.Serializable;
 
-public class Produto implements Serializable {
+public class Fornecedor implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
 	private Integer id;
-	private String nome;
-	private String descricao;
-	private Double preco;
+	private String nome;	
+	private String telefone;
 	
-	private Fornecedor fornecedor;
+	private Endereco endereco;
 	
-	public Produto() {
+	public Fornecedor() {
 		
 	}
 
-	public Produto(Integer id, String nome, String descricao, Double preco, Fornecedor fornecedor) {
+	public Fornecedor(Integer id, String nome, String telefone, 
+			Endereco endereco) {
+		super();
 		this.id = id;
 		this.nome = nome;
-		this.descricao = descricao;
-		this.preco = preco;
-		this.fornecedor = fornecedor;
+		this.telefone = telefone;
+		this.endereco = endereco;
 	}
 
 	public Integer getId() {
@@ -41,33 +41,25 @@ public class Produto implements Serializable {
 		this.nome = nome;
 	}
 
-	public String getDescricao() {
-		return descricao;
+	public String getTelefone() {
+		return telefone;
 	}
 
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
 	}
 
-	public Double getPreco() {
-		return preco;
+	public Endereco getEndereco() {
+		return endereco;
 	}
 
-	public void setPreco(Double preco) {
-		this.preco = preco;
-	}
-	
-	public Fornecedor getFornecedor() {
-		return fornecedor;
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
 	}
 
-	public void setFornecedor(Fornecedor fornecedor) {
-		this.fornecedor = fornecedor;
-	}
-	
 	@Override
 	public String toString() {
-		return nome + ", Fornecedor: " + fornecedor;
+		return nome + ", Tel: " + telefone + ", Endereço: " + endereco;
 	}
 
 	@Override
@@ -86,7 +78,7 @@ public class Produto implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Produto other = (Produto) obj;
+		Fornecedor other = (Fornecedor) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;

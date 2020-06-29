@@ -1,28 +1,28 @@
-package entities;
+package model.entities;
 
 import java.io.Serializable;
 
-public class Fornecedor implements Serializable{
+public class Produto implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
 	private Integer id;
-	private String nome;	
-	private String telefone;
+	private String nome;
+	private String descricao;
+	private Double preco;
 	
-	private Endereco endereco;
+	private Fornecedor fornecedor;
 	
-	public Fornecedor() {
+	public Produto() {
 		
 	}
 
-	public Fornecedor(Integer id, String nome, String telefone, 
-			Endereco endereco) {
-		super();
+	public Produto(Integer id, String nome, String descricao, Double preco, Fornecedor fornecedor) {
 		this.id = id;
 		this.nome = nome;
-		this.telefone = telefone;
-		this.endereco = endereco;
+		this.descricao = descricao;
+		this.preco = preco;
+		this.fornecedor = fornecedor;
 	}
 
 	public Integer getId() {
@@ -41,25 +41,33 @@ public class Fornecedor implements Serializable{
 		this.nome = nome;
 	}
 
-	public String getTelefone() {
-		return telefone;
+	public String getDescricao() {
+		return descricao;
 	}
 
-	public void setTelefone(String telefone) {
-		this.telefone = telefone;
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
 
-	public Endereco getEndereco() {
-		return endereco;
+	public Double getPreco() {
+		return preco;
 	}
 
-	public void setEndereco(Endereco endereco) {
-		this.endereco = endereco;
+	public void setPreco(Double preco) {
+		this.preco = preco;
+	}
+	
+	public Fornecedor getFornecedor() {
+		return fornecedor;
 	}
 
+	public void setFornecedor(Fornecedor fornecedor) {
+		this.fornecedor = fornecedor;
+	}
+	
 	@Override
 	public String toString() {
-		return nome + ", Tel: " + telefone + ", Endereço: " + endereco;
+		return nome + ", Fornecedor: " + fornecedor;
 	}
 
 	@Override
@@ -78,7 +86,7 @@ public class Fornecedor implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Fornecedor other = (Fornecedor) obj;
+		Produto other = (Produto) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
