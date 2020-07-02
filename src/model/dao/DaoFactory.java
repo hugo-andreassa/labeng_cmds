@@ -5,7 +5,7 @@ import model.dao.impl.FornecedorDaoJDBC;
 
 public class DaoFactory {
 	
-	public FornecedorDao createFornecedorDao() {
+	public static FornecedorDao createFornecedorDao() {
 		return new FornecedorDaoJDBC(DB.getConnection());
 	}
 	
