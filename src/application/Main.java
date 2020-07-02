@@ -2,6 +2,7 @@ package application;
 
 import java.util.List;
 
+import model.entities.Endereco;
 import model.entities.Fornecedor;
 import model.service.FornecedorService;
 
@@ -24,14 +25,24 @@ public class Main /*extends Application*/ {
 		// launch(args);
 		
 		FornecedorService service = new FornecedorService();
-		Fornecedor forn = service.findById(2);
 		
-		System.out.println(forn);
+		// Insert
+		Fornecedor obj = new Fornecedor(null, "Copafer", "11956492900", 
+				new Endereco(null, "Rua", "Cidade", "Estado", "Complemento", "A45", "CEP"));
+		service.saveOrUpdate(obj);
 		
-		/*List<Fornecedor> list = service.findAll();
+		// FindById and Update
+		obj = service.findById(2);
+		obj.setNome("Mafecom");
+		service.saveOrUpdate(obj);
 		
+		// Delete
+		service.delete(1);
+		
+		// FindAll
+		List<Fornecedor> list = service.findAll();
 		for (Fornecedor fornecedor : list) {
 			System.out.println(fornecedor);
-		}*/
+		}
 	}
 }

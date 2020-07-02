@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,19 +24,107 @@ public class FornecedorDaoJDBC implements FornecedorDao {
 
 	@Override
 	public void insert(Fornecedor obj) {
-		// TODO Auto-generated method stub
+		PreparedStatement stFornecedor = null;
+		PreparedStatement stEndereco = null;
+		ResultSet rs = null;
+		
+		try {
+			conn.setAutoCommit(false);
+			
+			stFornecedor = conn.prepareStatement("INSERT INTO "
+					+ "fornecedor(nome, telefone) "
+					+ "VALUES(?, ?)", Statement.RETURN_GENERATED_KEYS);
+			
+			stFornecedor.setString(1, obj.getNome());
+			stFornecedor.setString(2, obj.getTelefone());
+			stFornecedor.executeUpdate();
+			
+			// Pego o ID gerado pra o fornecedor
+			rs = stFornecedor.getGeneratedKeys();
+			if(rs.next()) {
+				int id = rs.getInt(1);
+				obj.setId(id);
+			}
+			
+			stEndereco = conn.prepareStatement("INSERT INTO "
+					+ "endereco(idfornecedor, rua, cidade, estado, cep, "
+					+ "complemento, numero) "
+					+ "VALUES (?, ?, ?, ?, ?, ?, ?)");
+			stEndereco.setInt(1, obj.getId());
+			stEndereco.setString(2, obj.getEndereco().getRua());
+			stEndereco.setString(3, obj.getEndereco().getCidade());
+			stEndereco.setString(4, obj.getEndereco().getEstado());
+			stEndereco.setString(5, obj.getEndereco().getCep());
+			stEndereco.setString(6, obj.getEndereco().getComplemento());
+			stEndereco.setString(7, obj.getEndereco().getNumero());
+			stEndereco.executeUpdate();
+			
+			conn.commit();			
+			conn.setAutoCommit(true);
+		} catch (SQLException e) {
+			throw new DBException(e.getMessage());
+		} finally {
+			DB.closeResultSet(rs);
+			DB.closeStatement(stFornecedor);
+			DB.closeStatement(stEndereco);
+		}
 	}
 
 	@Override
 	public void update(Fornecedor obj) {
-		// TODO Auto-generated method stub
+		PreparedStatement stFornecedor = null;
+		PreparedStatement stEndereco = null;
+		
+		try {
+			conn.setAutoCommit(false);
+			
+			stFornecedor = conn.prepareStatement("UPDATE fornecedor "
+					+ "SET nome = ?, telefone = ? "
+					+ "WHERE id = ?");
+			stFornecedor.setString(1, obj.getNome());
+			stFornecedor.setString(2, obj.getTelefone());
+			stFornecedor.setInt(3, obj.getId());
+			stFornecedor.executeUpdate();
+			
+			stEndereco = conn.prepareStatement("UPDATE endereco "
+					+ "SET rua = ?, cidade = ?, estado = ?, cep = ?, "
+					+ "complemento = ?, numero = ? "
+					+ "WHERE id = ?");
+			stEndereco.setString(1, obj.getEndereco().getRua());
+			stEndereco.setString(2, obj.getEndereco().getCidade());
+			stEndereco.setString(3, obj.getEndereco().getEstado());
+			stEndereco.setString(4, obj.getEndereco().getCep());
+			stEndereco.setString(5, obj.getEndereco().getComplemento());
+			stEndereco.setString(6, obj.getEndereco().getNumero());
+			stEndereco.setInt(7, obj.getEndereco().getId());
+			stEndereco.executeUpdate();
+			
+			conn.commit();			
+			conn.setAutoCommit(true);
+		} catch (SQLException e) {
+			throw new DBException(e.getMessage());
+		} finally {
+			DB.closeStatement(stFornecedor);
+			DB.closeStatement(stEndereco);
+		}
 		
 	}
 
 	@Override
 	public void deleteById(Integer id) {
-		// TODO Auto-generated method stub
+		PreparedStatement st = null;
 		
+		try {
+			st = conn.prepareStatement("DELETE FROM fornecedor "
+					+ "WHERE id = ?");
+			st.setInt(1, id);
+			st.executeUpdate();
+			
+		} catch (SQLException e) {
+			throw new DBException(e.getMessage());
+		} finally {
+			DB.closeStatement(st);
+		}		
 	}
 
 	@Override
@@ -112,7 +201,7 @@ public class FornecedorDaoJDBC implements FornecedorDao {
 		end.setCidade(rs.getString("cidade"));
 		end.setComplemento(rs.getString("complemento"));
 		end.setEstado(rs.getString("estado"));
-		end.setNumero(rs.getInt("numero"));
+		end.setNumero(rs.getString("numero"));
 		end.setRua(rs.getString("rua"));
 		
 		forn.setId(rs.getInt("idforn"));
