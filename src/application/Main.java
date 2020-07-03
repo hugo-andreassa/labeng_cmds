@@ -1,10 +1,16 @@
 package application;
 
-import java.util.List;
+import java.util.Date;
 
 import model.entities.Endereco;
 import model.entities.Fornecedor;
+import model.entities.ItemSolicitacao;
+import model.entities.Produto;
+import model.entities.Solicitacao;
+import model.entities.enums.StatusItem;
+import model.entities.enums.StatusSolicitacao;
 import model.service.FornecedorService;
+import model.service.ProdutoService;
 
 public class Main /*extends Application*/ {
 	
@@ -24,25 +30,26 @@ public class Main /*extends Application*/ {
 	public static void main(String[] args) {
 		// launch(args);
 		
-		FornecedorService service = new FornecedorService();
+		FornecedorService sf = new FornecedorService();
+		ProdutoService sp = new ProdutoService();
 		
 		// Insert
-		Fornecedor obj = new Fornecedor(null, "Copafer", "11956492900", 
+		Fornecedor f = new Fornecedor(null, "Copafer", "11956492900", 
 				new Endereco(null, "Rua", "Cidade", "Estado", "Complemento", "A45", "CEP"));
-		service.saveOrUpdate(obj);
+		sf.saveOrUpdate(f);
 		
 		// FindById and Update
-		obj = service.findById(2);
-		obj.setNome("Mafecom");
-		service.saveOrUpdate(obj);
+		f = sf.findById(1);
 		
-		// Delete
-		service.delete(1);
+		// FindById
+		Produto p = new Produto(null, "Tijolo", "Para contruir casas", 30.10, f); 
+		p = sp.findById(1);
 		
-		// FindAll
-		List<Fornecedor> list = service.findAll();
-		for (Fornecedor fornecedor : list) {
-			System.out.println(fornecedor);
-		}
+		ItemSolicitacao is = new ItemSolicitacao(3, p.getPreco(), StatusItem.NAO_COMPRADO, p);
+		Solicitacao s = new Solicitacao(null, new Date(), StatusSolicitacao.ABERTO);
+		s.addItens(is);
+		
+		
+		
 	}
 }

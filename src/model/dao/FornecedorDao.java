@@ -11,5 +11,4 @@ public interface FornecedorDao {
 	void deleteById(Integer id);
 	Fornecedor findById(Integer id);
 	List<Fornecedor> findAll();
-	
 }
