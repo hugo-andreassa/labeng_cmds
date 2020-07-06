@@ -36,25 +36,36 @@ public class Main /*extends Application*/ {
 		SolicitacaoService ss = new SolicitacaoService();
 		
 		// Insert
-		/*Fornecedor f = new Fornecedor(null, "Copafer", "11956492900", 
+		Fornecedor f = new Fornecedor(null, "Copafer", "11956492900", 
 				new Endereco(null, "Rua", "Cidade", "Estado", "Complemento", "A45", "CEP"));
 		sf.saveOrUpdate(f);
 		f = sf.findById(1);
 		
 		// FindById
-		Produto p = new Produto(null, "Tijolo", "Para contruir casas", 30.10, f); 
-		sp.saveOrUpdate(p);
-		p = sp.findById(1);
+		Produto p1 = new Produto(null, "Tijolo", "Para contruir casas", 30.10, f); 
+		Produto p2 = new Produto(null, "Porta de ferro", "Para fechar casas", 100.10, f);
+		sp.saveOrUpdate(p1);
+		sp.saveOrUpdate(p2);
+		p1 = sp.findById(1);
+		p2 = sp.findById(2);
 		
-		ItemSolicitacao is = new ItemSolicitacao(3, p.getPreco(), StatusItem.NAO_COMPRADO, p);
+		ItemSolicitacao is1 = new ItemSolicitacao(1, p1.getPreco(), StatusItem.NAO_COMPRADO, p1);
+		ItemSolicitacao is2 = new ItemSolicitacao(1, p2.getPreco(), StatusItem.NAO_COMPRADO, p2);
 		Solicitacao s = new Solicitacao(null, new Date(), StatusSolicitacao.ABERTO);
-		s.addItens(is);*/
+		s.addItens(is1);
+		s.addItens(is2);
+		ss.saveOrUpdate(s);
+		
+		s = ss.findById(1);
+		s.setStatus(StatusSolicitacao.CANCELADO);
+		s.getItens().get(1).setStatus(StatusItem.COMPRADO);
+		ss.saveOrUpdate(s);
 		
 		for (Solicitacao sol : ss.findAll()) {
 			System.out.println(sol);
 			for (ItemSolicitacao i : sol.getItens()) {
 				System.out.println(i);
 			}
-		}
+		}		
 	}
 }
