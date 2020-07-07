@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="266.0" prefWidth="519.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label prefHeight="27.0" prefWidth="74.0" text="About">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </Label>
+      <Label prefHeight="208.0" prefWidth="501.0" text="O projeto consiste em um sistema de gerenciamento de obras / construções civis, por meio dele o responsável da obra terá acesso a um cadastro de produtos, contendo: nome, descrição, medida de venda do produto (kg, ml ou m2; indicando peso, volume ou comprimento) e valor dessa medida de venda. A cada solicitação de compra, cadastram-se os itens dessa solicitação. Cada item possui: o produto e a quantidade. Quando cada item é adquirido, atualiza-se a solicitação com o preço unitário de compra, a forma de pagamento (dinheiro, cartão de débito ou crédito), a data de compra e o local da compra." wrapText="true">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </Label>
+   </children>
+   <padding>
+      <Insets left="10.0" top="10.0" />
+   </padding>
+</VBox>
