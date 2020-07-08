@@ -8,9 +8,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.FornecedorListController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ProdutoListController">
    <children>
-      <Label prefHeight="54.0" prefWidth="601.0" text="Registrar novo Fornecedor" textAlignment="CENTER">
+      <Label prefHeight="54.0" prefWidth="601.0" text="Registrar novo Produto" textAlignment="CENTER">
          <font>
             <Font name="System Bold" size="30.0" />
          </font>
@@ -29,12 +29,13 @@
             <Font size="15.0" />
          </font>
       </Button>
-      <TableView fx:id="tableViewFornecedor" prefHeight="300.0" prefWidth="600.0">
+      <TableView fx:id="tableViewProduto" prefHeight="300.0" prefWidth="600.0">
         <columns>
           <TableColumn fx:id="tableColumnId" minWidth="5.0" prefWidth="75.0" text="ID" />
           <TableColumn fx:id="tableColumnNome" prefWidth="75.0" text="Nome" />
-            <TableColumn fx:id="tableColumnTelefone" minWidth="100.0" prefWidth="75.0" text="Telefone" />
-            <TableColumn fx:id="tableColumnEndereco" maxWidth="1000.0" minWidth="180.0" prefWidth="75.0" text="Endereço" />
+            <TableColumn fx:id="tableColumnDescricao" prefWidth="75.0" text="Descrição" />
+            <TableColumn fx:id="tableColumnPreco" prefWidth="75.0" text="Preço" />
+            <TableColumn fx:id="tableColumnFornecedor" prefWidth="75.0" text="Fornecedor" />
             <TableColumn fx:id="tableColumnEDIT" prefWidth="75.0" />
             <TableColumn fx:id="tableColumnREMOVE" minWidth="80.0" prefWidth="75.0" />
         </columns>
