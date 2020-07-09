@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ItemListController">
+   <children>
+      <TableView fx:id="tableViewItemSolicitacao" prefHeight="300.0" prefWidth="600.0">
+        <columns>
+          <TableColumn fx:id="tableColumnQuantidade" minWidth="5.0" prefWidth="75.0" text="Quantidade" />
+          <TableColumn fx:id="tableColumnPreco" prefWidth="75.0" text="Preço" />
+            <TableColumn fx:id="tableColumnProduto" prefWidth="75.0" text="Produto" />
+            <TableColumn fx:id="tableColumnREMOVE" minWidth="80.0" prefWidth="75.0" />
+        </columns>
+      </TableView>
+   </children>
+</VBox>
